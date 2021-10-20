@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Battleship Game</title>
+		<title>The Battleship Game</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 	
-	<h1>Battleship</h1>	
+	<h1>BattleShip Game</h1>	
 
-	<p>Click inside the grid to fire a toorpedo. Try to sink every ship!</p>
+	<p>Click inside the grid to fire a torpedo. Try to sink every ship!</p>
 
 	<div id="gameboard">
 	</div>
-	
+	<button type="submit" onClick="refreshPage()">Game Reset</button>
 	<script type="text/javascript" src="battleship.js"></script>
+	<script>
+		function refreshPage(){
+     window.location.reload();
+    }
+	</script>
 	</body>
 </html>
