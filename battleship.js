@@ -38,6 +38,7 @@ for (i = 0; i < cols; i++) {
       Patrol Boat - 2 hits
 */
 var hitCount = 0;
+var missedCount = 0;
 
 /* create the 2d array that will contain the status of each square on the board
    and place ships on the board (later, create function for random placement!)
@@ -47,7 +48,7 @@ var hitCount = 0;
 var gameBoard = [
 				[1,1,1,0],
 				[0,0,0,0],
-				[0,0,0,0],
+				[0,0,1,0],
 				[1,0,0,0]
 				]
 
@@ -68,8 +69,14 @@ function fireTorpedo(e) {
 			e.target.style.background = '#bbb';
 			// set this square's value to 3 to indicate that they fired and missed
 			gameBoard[row][col] = 3;
-			
-		// if player clicks a square with a ship, change the color and change square's value
+
+			// increment missedCount each time a ship is missed
+			missedCount++;
+			if (missedCount == 4) {
+				alert("You Lost! please click Restart");
+			}	
+
+			// if player clicks a square with a ship, change the color and change square's value
 		} else if (gameBoard[row][col] == 1) {
 			e.target.style.background = 'red';
 			// set this square's value to 2 to indicate the ship has been hit
@@ -77,12 +84,13 @@ function fireTorpedo(e) {
 			
 			// increment hitCount each time a ship is hit
 			hitCount++;
+			
 			// this definitely shouldn't be hard-coded, but here it is anyway. lazy, simple solution:
-			if (hitCount == 17) {
+			if (hitCount == 5) {
 				alert("All enemy battleships have been defeated! You win!");
 			}
-			
-		// if player clicks a square that's been previously hit, let them know
+				
+			// if player clicks a square that's been previously hit, let them know
 		} else if (gameBoard[row][col] > 1) {
 			alert("Stop wasting your torpedos! You already fired at this location.");
 		}		
